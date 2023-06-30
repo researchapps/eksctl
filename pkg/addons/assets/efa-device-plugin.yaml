@@ -58,6 +58,8 @@ spec:
                       - g5.48xlarge
                       - hpc6a.48xlarge
                       - hpc7g.16xlarge
+                      - hpc7g.8xlarge
+                      - hpc7g.4xlarge
                       - i3en.12xlarge
                       - i3en.24xlarge
                       - i3en.metal
@@ -116,6 +118,8 @@ spec:
                       - g5.48xlarge
                       - hpc6a.48xlarge
                       - hpc7g.16xlarge
+                      - hpc7g.8xlarge
+                      - hpc7g.4xlarge
                       - i3en.12xlarge
                       - i3en.24xlarge
                       - i3en.metal

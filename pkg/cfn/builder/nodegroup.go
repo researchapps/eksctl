@@ -416,7 +416,10 @@ func newLaunchTemplateData(ctx context.Context, n *NodeGroupResourceSet) (*gfnec
 		}
 	}
 
-	if err := buildNetworkInterfaces(ctx, launchTemplateData, n.spec.InstanceTypeList(), api.IsEnabled(n.spec.EFAEnabled), n.securityGroups, n.ec2API); err != nil {
+	efaEnabled := api.IsEnabled(n.spec.EFAEnabled)
+	logger.Info("Creating network interfaces, efaEnabled is %s", efaEnabled)
+	if err := buildNetworkInterfaces(ctx, launchTemplateData, n.spec.InstanceTypeList(), efaEnabled, n.securityGroups, n.ec2API); err != nil {
+		logger.Info("BEEP BOOP ERROR buildNetworkInterfaces in nodegroup.go ")
 		return nil, errors.Wrap(err, "couldn't build network interfaces for launch template data")
 	}
 

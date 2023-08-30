@@ -334,8 +334,9 @@ const (
 	NodeVolumeTypeGP2 = "gp2"
 	// NodeVolumeTypeGP3 is General Purpose SSD which can be optimised for high throughput (default)
 	NodeVolumeTypeGP3 = "gp3"
-	// NodeVolumeTypeIO1 is Provisioned IOPS SSD
+	// NodeVolumeTypeIO1/02 are Provisioned IOPS SSD
 	NodeVolumeTypeIO1 = "io1"
+	NodeVolumeTypeIO2 = "io2"
 	// NodeVolumeTypeSC1 is Cold HDD
 	NodeVolumeTypeSC1 = "sc1"
 	// NodeVolumeTypeST1 is Throughput Optimized HDD
@@ -534,6 +535,7 @@ func SupportedNodeVolumeTypes() []string {
 		NodeVolumeTypeGP2,
 		NodeVolumeTypeGP3,
 		NodeVolumeTypeIO1,
+		NodeVolumeTypeIO2,
 		NodeVolumeTypeSC1,
 		NodeVolumeTypeST1,
 	}

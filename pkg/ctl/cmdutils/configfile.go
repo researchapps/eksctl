@@ -515,8 +515,8 @@ func normalizeNodeGroup(ng *api.NodeGroup, l *commonClusterConfigLoader) error {
 		ng.SSH.PublicKeyPath = nil
 	}
 
-	if *ng.VolumeType == api.NodeVolumeTypeIO1 {
-		return fmt.Errorf("%s volume type is not supported via flag --node-volume-type, please use a config file", api.NodeVolumeTypeIO1)
+	if *ng.VolumeType == api.NodeVolumeTypeIO1 || *ng.VolumeType == api.NodeVolumeTypeIO2 {
+		return fmt.Errorf("NodeVolumeTypeION volume types are not supported via flag --node-volume-type, please use a config file")
 	}
 
 	normalizeBaseNodeGroup(ng, l.CobraCommand)

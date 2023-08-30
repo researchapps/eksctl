@@ -272,6 +272,30 @@ var _ = Describe("ClusterConfig validation", func() {
 				})
 			})
 
+			When("VolumeType is io2", func() {
+				BeforeEach(func() {
+					*ng0.VolumeType = api.NodeVolumeTypeIO2
+				})
+
+				It("does not fail", func() {
+					Expect(api.ValidateNodeGroup(0, ng0, cfg)).To(Succeed())
+				})
+
+				When(fmt.Sprintf("the value of volumeIOPS is < %d", api.MinIO1Iops), func() {
+					It("returns an error", func() {
+						ng0.VolumeIOPS = aws.Int(api.MinIO1Iops - 1)
+						Expect(api.ValidateNodeGroup(0, ng0, cfg)).To(MatchError("value for nodeGroups[0].volumeIOPS must be within range 100-64000"))
+					})
+				})
+
+				When(fmt.Sprintf("the value of volumeIOPS is > %d", api.MaxIO1Iops), func() {
+					It("returns an error", func() {
+						ng0.VolumeIOPS = aws.Int(api.MaxIO1Iops + 1)
+						Expect(api.ValidateNodeGroup(0, ng0, cfg)).To(MatchError("value for nodeGroups[0].volumeIOPS must be within range 100-64000"))
+					})
+				})
+			})
+
 			When("VolumeType is one for which IOPS is not supported", func() {
 				It("returns an error", func() {
 					*ng0.VolumeType = api.NodeVolumeTypeGP2

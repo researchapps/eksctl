@@ -37,7 +37,7 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
               - matchExpressions:
-                  - key: "beta.kubernetes.io/instance-type"
+                  - key: "node.kubernetes.io/instance-type"
                     operator: In
                     values:
                       - c5n.18xlarge
@@ -57,6 +57,9 @@ spec:
                       - g4dn.metal
                       - g5.48xlarge
                       - hpc6a.48xlarge
+                      - hpc7g.16xlarge
+                      - hpc7g.8xlarge
+                      - hpc7g.4xlarge
                       - i3en.12xlarge
                       - i3en.24xlarge
                       - i3en.metal
@@ -114,6 +117,9 @@ spec:
                       - g4dn.metal
                       - g5.48xlarge
                       - hpc6a.48xlarge
+                      - hpc7g.16xlarge
+                      - hpc7g.8xlarge
+                      - hpc7g.4xlarge
                       - i3en.12xlarge
                       - i3en.24xlarge
                       - i3en.metal
@@ -155,7 +161,8 @@ spec:
         - image: "%s.dkr.ecr.%s.%s/eks/aws-efa-k8s-device-plugin:v0.3.3"
           name: aws-efa-k8s-device-plugin
           securityContext:
-            runAsNonRoot: true
+            # This absolutely does not work
+            # runAsNonRoot: true
             allowPrivilegeEscalation: false
             capabilities:
               drop: ["ALL"]
